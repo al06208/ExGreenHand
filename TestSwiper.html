@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Test Swiper</title>
+        <script>
+            var asyncRequest;
+
+            function getMatch(uid){
+                try {
+                    asyncRequest = new XMLHttpRequest();
+                    //make the listeners and open the request
+
+                    asyncRequest.addEventListener("readystatechange", processResponse, false);
+                    asyncRequest.open("GET", "MatchGetter.php?q=" + uid, true);
+                    asyncRequest.send(null);
+                }
+                catch (exception) {
+                    alert("Request Failed");
+                }
+            }
+
+            function processResponse() {
+                if (asyncRequest.readyState == 4 && asyncRequest.status == 200) {
+                    clearDiv();
+                    document.getElementById("thisMatch").innerHTML = asyncRequest.responseText;
+                }
+            }
+
+            function clearDiv() {
+                document.getElementById("thisMatch").innerHTML = "";
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>Ideally this will find the first match from Matches based on the given UID</h1>
+        <h2>this div should contain the contents of this user id's first match</h2>
+        <select id="numbers" onchange="getMatch(this.value)">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <div id="thisMatch"></div>
+    </body>
+</html>

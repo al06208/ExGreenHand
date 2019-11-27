@@ -28,6 +28,10 @@ session_start();
 		</div>
 		</div>
 		<?php 
+        $HOST_NAME = "localhost";
+        $DATABASE_NAME = "distwebproject";
+        $USERNAME = "root";
+        $PASSWORD = "";
 			
 				try {
 					$DSN = "mysql:host=$HOST_NAME;dbname=$DATABASE_NAME";
